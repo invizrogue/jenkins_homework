@@ -2,6 +2,7 @@ package study.qa.base.utils;
 
 import com.github.javafaker.Faker;
 import java.security.SecureRandom;
+import java.util.Objects;
 
 public class RandomUtils {
     static Faker faker = new Faker();
@@ -35,11 +36,14 @@ public class RandomUtils {
     }
 
     public static String randomString(int len, String type) {
-        String AB = switch (type) {
-            case ("letters") -> "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-            case ("numbers") -> "0123456789";
-            default -> "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-        };
+        String AB;
+        if (Objects.equals(type, "letters")) {
+            AB = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        } else if (Objects.equals(type, "numbers")) {
+            AB = "0123456789";
+        } else {
+            AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        }
         SecureRandom rnd = new SecureRandom();
         StringBuilder sb = new StringBuilder(len);
         for(int i = 0; i < len; i++)
@@ -58,30 +62,16 @@ public class RandomUtils {
     }
 
     public static String randomMonth() {
-        String monthName = "";
+        String[] months = {"January","February","March","April","May","June",
+                "July","August","September","October","November","December"};
         int first = Integer.parseInt(randomString(1, "numbers"));
         int second = Integer.parseInt(randomString(1, "numbers"));
-        System.out.println(first + "," + second);
         int monthNum = first + second;
         if (monthNum > 12) {
             monthNum = 1 + second;
         } else if (monthNum == 0) {
             monthNum = 1;
         }
-        switch (monthNum) {
-            case (1) -> monthName = "January";
-            case (2) -> monthName = "February";
-            case (3) -> monthName = "March";
-            case (4) -> monthName = "April";
-            case (5) -> monthName = "May";
-            case (6) -> monthName = "June";
-            case (7) -> monthName = "July";
-            case (8) -> monthName = "August";
-            case (9) -> monthName = "September";
-            case (10) -> monthName = "October";
-            case (11) -> monthName = "November";
-            case (12) -> monthName = "December";
-        }
-        return monthName;
+        return months[monthNum - 1];
     }
 }

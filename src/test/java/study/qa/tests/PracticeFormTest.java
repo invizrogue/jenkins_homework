@@ -23,6 +23,7 @@ public class PracticeFormTest extends BaseTest {
     }
 
     @Test
+    @Tags({@Tag("SUBMIT_FORM_TEST"), @Tag("BLOCKER")})
     void submitPracticeFormTest() {
 
         String firstName = randomFirstName(),

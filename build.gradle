@@ -1,5 +1,5 @@
 plugins {
-    id 'java'
+    id 'java-library'
     id 'io.qameta.allure' version '2.10.0'
 }
 
@@ -41,4 +41,10 @@ dependencies {
 test {
     useJUnitPlatform()
     systemProperties(System.getProperties())
+}
+
+task submit_form_test(type: Test) {
+    useJUnitPlatform{
+        includeTags("SUBMIT_FORM_TEST")
+    }
 }

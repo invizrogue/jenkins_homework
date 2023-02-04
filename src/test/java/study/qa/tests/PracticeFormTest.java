@@ -1,6 +1,7 @@
 package study.qa.tests;
 
 import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.*;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
 import study.qa.base.BaseTest;
@@ -13,17 +14,27 @@ public class PracticeFormTest extends BaseTest {
 
     @BeforeEach
     public void init() {
-        setUp();
-        SelenideLogger.addListener("allure", new AllureSelenide());
+        step("Конфигурируем вебдрайвер", () -> {
+            setUp();
+            SelenideLogger.addListener("allure", new AllureSelenide());
+        });
     }
 
     @AfterEach
     public void tearDown() {
-        closeWebDriver();
+        step("Закрываем браузер", () -> {
+            closeWebDriver();
+        });
     }
 
     @Test
-    @Tags({@Tag("SUBMIT_FORM_TEST"), @Tag("BLOCKER")})
+    @Tags({@Tag("BLOCKER"), @Tag("SUBMIT_FORM_TEST")})
+    @Feature("Заполнение формы")
+    @Story("Заполнение формы генерируемыми данными")
+    @Owner("Dmitry Mikhaylov")
+    @Severity(SeverityLevel.BLOCKER)
+    @Link(value = "GitHub repository", url = "https://github.com/invizrogue/jenkins_homework")
+    @DisplayName("Заполнение формы случайными генерируемыми данными")
     void submitPracticeFormTest() {
 
         String firstName = randomFirstName(),

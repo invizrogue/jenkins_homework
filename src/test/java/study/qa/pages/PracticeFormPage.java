@@ -224,7 +224,6 @@ public class PracticeFormPage {
                 .verifyKeyValue("Hobbies", "Sports")
                 .verifyKeyValue("Picture", fileName)
                 .verifyKeyValue("Address", address)
-                .verifyKeyValue("State and City", "NCR Delhi")
-                .closeModal();
+                .verifyKeyValue("State and City", "NCR Delhi");
     }
 }

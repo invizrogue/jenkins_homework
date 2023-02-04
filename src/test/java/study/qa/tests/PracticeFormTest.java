@@ -23,13 +23,16 @@ public class PracticeFormTest extends BaseTest {
 
     @AfterEach
     public void tearDown() {
+        step("Формируем вложения для отчёта", () -> {
+            Attach.screenshotAs("Last screenshot");
+            Attach.pageSource();
+            Attach.browserConsoleLogs();
+//        Attach.addVideo();
+        });
         step("Закрываем браузер", () -> {
             closeWebDriver();
         });
-        Attach.screenshotAs("Last screenshot");
-        Attach.pageSource();
-        Attach.browserConsoleLogs();
-//        Attach.addVideo();
+
     }
 
     @Test

@@ -1,7 +1,10 @@
 package study.qa.base;
 
 import com.codeborne.selenide.Configuration;
+import org.junit.jupiter.api.AfterEach;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import study.qa.base.utils.Attach;
+
 import java.util.Map;
 
 abstract public class BaseTest {
@@ -21,5 +24,13 @@ abstract public class BaseTest {
                 "enableVideo", true         // включает запись видео
         ));
         Configuration.browserCapabilities = capabilities;
+    }
+
+    @AfterEach
+    void addAttachments() {
+        Attach.screenshotAs("Last screenshot");
+        Attach.pageSource();
+        Attach.browserConsoleLogs();
+//        Attach.addVideo();
     }
 }

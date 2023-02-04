@@ -27,12 +27,11 @@ public class PracticeFormTest extends BaseTest {
             Attach.screenshotAs("Last screenshot");
             Attach.pageSource();
             Attach.browserConsoleLogs();
-//        Attach.addVideo();
+            Attach.addVideo();
         });
         step("Закрываем браузер", () -> {
             closeWebDriver();
         });
-
     }
 
     @Test
